@@ -71,7 +71,3 @@ python mastodon_user_info.py https://mastodon.example.com/@example --output diar
 ## License
 
 This script is provided under the GPL V3 License. See the `LICENSE` file for more details.
-
----
-
-Feel free to adjust any parts of this README to better fit your specific use case or to add any additional information that might be relevant!
