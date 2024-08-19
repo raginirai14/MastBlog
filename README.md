@@ -1,7 +1,3 @@
-Here's a README file for your Mastodon posts to diary script:
-
----
-
 # MastBlog
 
 This script fetches all public posts from a Mastodon user and formats them into a diary-style HTML document. It is designed to be run from the command line and requires Python with several packages.
