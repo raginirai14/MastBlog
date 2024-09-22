@@ -31,7 +31,7 @@ pip install requests beautifulsoup4 python-dotenv pytz
 ### Command-Line Arguments
 
 ```bash
-python mastodon_user_info.py [options] [url]
+python app.py [options] [url]
 ```
 
 - `url`: The URL of the Mastodon profile (optional). If not provided, it defaults to the `MASTODON_URL` environment variable.
@@ -61,7 +61,7 @@ You can configure the following environment variables in a `.env` file:
 2. Run the script:
 
    ```bash
-   python mastodon_user_info.py
+   python app.py
    ```
 
 ## Output
