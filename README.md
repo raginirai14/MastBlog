@@ -9,7 +9,6 @@ MastBlog is a command-line tool that retrieves posts from a specified Mastodon u
 - Fetch user posts from a Mastodon profile.
 - Format posts into an HTML diary with customizable templates.
 - Supports timezone adjustments for post timestamps.
-- Excludes replies from the output.
 
 ## Requirements
 
@@ -57,7 +56,6 @@ You can configure the following environment variables in a `.env` file:
    TEMPLATE=templates/my_template.html
    TIMEZONE=America/New_York
    ```
-
 2. Run the script:
 
    ```bash
@@ -74,6 +72,15 @@ The script generates an HTML file containing the user's posts formatted as a dia
 - Check that the template file exists at the specified path.
 - If you encounter issues with timezone, verify the `TIMEZONE` variable.
 
+## Future Roadmap
+
+- **Post Filtering**: Implement options to filter posts by date range or keywords.
+- **User Authentication**: Add support for OAuth to fetch posts from private accounts.
+- **Markdown Support**: Enhance content processing to support Markdown formatting.
+- **Multi-User Support**: Allow fetching posts from multiple users in a single run.
+- **Export Formats**: Add options to export posts in formats other than HTML (e.g., PDF, plain text).
+- **User Interface**: Consider creating a simple GUI for users who prefer not to use the command line.
+
 ## License
 
-This script is provided under the GPL V3 License. See the `LICENSE` file for more details.
+This script is provided under the **GPL V3** License. See the `LICENSE` file for more details.
