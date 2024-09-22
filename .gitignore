@@ -121,9 +121,6 @@ celerybeat.pid
 # SageMath parsed files
 *.sage.py
 
-#HTML
-*.html
-!template.html
 
 # Environments
 .env

@@ -19,7 +19,7 @@ arguments = argparse.ArgumentParser(
 )
 arguments.add_argument("url", type=str, nargs='?', default=os.getenv("MASTODON_URL"), help="URL of the Mastodon profile")
 arguments.add_argument("--output", type=str, default=os.getenv("OUTPUT_FILE", "posts.html"), help="Output HTML file")
-arguments.add_argument("--template", type=str, default="template.html", help="Path to HTML template file")
+arguments.add_argument("--template", type=str, default=os.getenv("TEMPLATE", "templates/retro_light.html"), help="Path to HTML template file")
 
 args = arguments.parse_args()
 
@@ -147,7 +147,7 @@ if isinstance(all_posts, list):
                 post_entries.append(f"<p><strong>{formatted_date}</strong></p>")
                 last_date = formatted_date
             
-            post_entries.append(f"<p class='post-time'>{formatted_time}<br>{decoded_content}</p>")
+            post_entries.append(f"<article><p class='post-time'>{formatted_time}</p><p>{decoded_content}</p></article>")
 
 if not post_entries:
     post_entries.append("<p>No posts with content found.</p>")
