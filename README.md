@@ -1,72 +1,78 @@
 # MastBlog
 
-This script fetches all public posts from a Mastodon user and formats them into a diary-style HTML document. It is designed to be run from the command line and requires Python with several packages.
+## Overview
+
+MastBlog is a command-line tool that retrieves posts from a specified Mastodon user's timeline and formats them into a diary-style HTML document. The output can be customized using a template file, and it supports time zone adjustments.
 
 ## Features
 
-- Fetches user posts from a Mastodon instance.
-- Processes and formats posts that start with `#Diary`.
-- Generates an HTML file with formatted diary entries.
+- Fetch user posts from a Mastodon profile.
+- Format posts into an HTML diary with customizable templates.
+- Supports timezone adjustments for post timestamps.
+- Excludes replies from the output.
 
 ## Requirements
 
 - Python 3.x
-- `requests` library
-- `beautifulsoup4` library
-- `python-dotenv` library
+- The following Python packages:
+  - `requests`
+  - `beautifulsoup4`
+  - `python-dotenv`
+  - `pytz`
 
-You can install the required libraries using pip:
+You can install the required packages using pip:
 
 ```bash
-pip install requests beautifulsoup4 python-dotenv
+pip install requests beautifulsoup4 python-dotenv pytz
 ```
-
-## Setup
-
-1. **Clone the repository** (if applicable) or save the script to a file (e.g., `mastodon_user_info.py`).
-
-2. **Create a `.env` file** in the same directory as the script. This file should contain the following environment variables:
-
-    ```ini
-    MASTODON_URL=https://mastodon.example.com
-    OUTPUT_FILE=posts.html
-    ```
-
-    - `MASTODON_URL`: The URL of the Mastodon instance. For example, `https://mastodon.social`.
-    - `OUTPUT_FILE`: The name of the output HTML file where the diary will be saved.
 
 ## Usage
 
-Run the script from the command line with the following options:
+### Command-Line Arguments
 
 ```bash
-python mastodon_user_info.py [url] [--output output_file]
+python mastodon_user_info.py [options] [url]
 ```
 
-### Arguments
+- `url`: The URL of the Mastodon profile (optional). If not provided, it defaults to the `MASTODON_URL` environment variable.
+- `--output`: Specify the output HTML file (optional). Defaults to the `OUTPUT_FILE` environment variable or `posts.html`.
+- `--template`: Specify the path to an HTML template file (optional). Defaults to the `TEMPLATE` environment variable or `templates/retro_light.html`.
 
-- `url` (optional): The URL of the Mastodon profile to fetch posts from. If not provided, the URL specified in the `.env` file will be used.
-- `--output` (optional): The name of the output HTML file. Defaults to `posts.html` if not specified.
+### Environment Variables
+
+You can configure the following environment variables in a `.env` file:
+
+- `MASTODON_URL`: The URL of the Mastodon profile.
+- `OUTPUT_FILE`: The name of the output HTML file (default: `posts.html`).
+- `TEMPLATE`: The path to the HTML template file (default: `templates/retro_light.html`).
+- `TIMEZONE`: The timezone for post timestamps (default: `Asia/Kolkata`).
 
 ### Example
 
-To fetch posts from `@example` on `https://mastodon.example.com` and save them to `diary.html`, you can run:
+1. Create a `.env` file in the project directory:
 
-```bash
-python mastodon_user_info.py https://mastodon.example.com/@example --output diary.html
-```
+   ```dotenv
+   MASTODON_URL=https://mastodon.social/@example
+   OUTPUT_FILE=my_diary.html
+   TEMPLATE=templates/my_template.html
+   TIMEZONE=America/New_York
+   ```
 
-## Notes
+2. Run the script:
 
-- Only posts that start with `#Diary` will be included in the output.
-- Replies and posts with empty content are excluded.
-- The script handles date and time formatting and includes basic error handling for network issues and unexpected responses.
+   ```bash
+   python mastodon_user_info.py
+   ```
+
+## Output
+
+The script generates an HTML file containing the user's posts formatted as a diary. Each post is organized by date, and only posts without replies are included. The output file will be named according to the `OUTPUT_FILE` environment variable or `posts.html` if not specified.
 
 ## Troubleshooting
 
-- **Network Errors**: Ensure that the Mastodon instance URL is correct and accessible.
-- **Invalid Date/Time**: If date or time formatting fails, it may be due to an unexpected date format in the post data.
-- **Unexpected Response Format**: Verify that the Mastodon API response structure matches expectations.
+- Ensure the Mastodon URL is valid.
+- Check that the template file exists at the specified path.
+- If you encounter issues with timezone, verify the `TIMEZONE` variable.
 
 ## License
 
